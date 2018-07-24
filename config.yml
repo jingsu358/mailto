@@ -1,0 +1,7 @@
+# input yutong mail address and password
+smtp: smtp.qq.com
+port: 25
+content_type: "Content-Type: text/plain; charset=UTF-8"
+mail: XXXXXXX@qq.com
+password:  cwpv 
+
