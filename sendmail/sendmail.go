@@ -4,13 +4,17 @@ import (
 	"fmt"
 	"io/ioutil"
 	"net/smtp"
+	"os"
+	"path/filepath"
 	//	"strings"
 
 	"github.com/kylelemons/go-gypsy/yaml"
 )
 
+var dir, _ = filepath.Abs(filepath.Dir(os.Args[0]))
+
 func Readyaml() []string {
-	config, err := yaml.ReadFile("config.yml")
+	config, err := yaml.ReadFile(dir + "/" + "config.yml")
 	if err != nil {
 		fmt.Println(err)
 	}
@@ -40,7 +44,7 @@ func Sendmail(receive []string, m map[string]string) {
 	user := mail
 	subject := "Happy birthday to you!"
 	// get mail body content
-	filebody, bodyerr := ioutil.ReadFile("body.txt")
+	filebody, bodyerr := ioutil.ReadFile(dir + "/" + "body.txt")
 	if bodyerr != nil {
 		fmt.Printf("Open file body.txt Error: %s\n", bodyerr)
 		panic(bodyerr)

@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"io"
 	"os"
+	"path/filepath"
 	"strings"
 	"time"
 	//	"github.com/mailto/sendmail"
@@ -12,8 +13,11 @@ import (
 
 var currentTimeData = time.Now().Format("2006-01-02")
 
+var dir, _ = filepath.Abs(filepath.Dir(os.Args[0]))
+
 func Openfile() ([]string, map[string]string) {
-	filename := "people.txt"
+	filename := dir + "/" + "people.txt"
+	//	fmt.Println(filename)
 	people, f_err := os.Open(filename)
 	if f_err != nil {
 		fmt.Printf("Error: %s\n", f_err)
